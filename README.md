@@ -8,6 +8,10 @@
 
 A Flutter plugin to support game center and google play games services.  
 
+## Changelog
+#### 5.0.0
+- Breaking Change due to `getAuthCode` not returning a string but instead a `IdentityVerificationData` Object. It will either have the Id Token named `signature` on Android or the entire Verification Data consisting of `publicKeyUrl`, `signature`, `salt` and `timestamp` on darwin devices (ios, ipad, mac) to verify the user on a server.
+
 ## Screenshot  
 #### iOS  
 <img src="https://raw.githubusercontent.com/Abedalkareem/games_services/master/screenshots/screenshot1.png" width="200"/> <img src="https://raw.githubusercontent.com/Abedalkareem/games_services/master/screenshots/screenshot2.png" width="200"/> <img src="https://raw.githubusercontent.com/Abedalkareem/games_services/master/screenshots/screenshot3.png" width="200"/>  
