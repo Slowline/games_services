@@ -3,3 +3,4 @@ export 'src/models/achievement.dart';
 export 'src/models/leaderboard_scope.dart';
 export 'src/models/leaderboard_time_scope.dart';
 export 'src/models/score.dart';
+export 'src/models/identity_verification_data.dart';

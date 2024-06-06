@@ -1,4 +1,5 @@
 import 'package:games_services_platform_interface/game_services_platform_interface.dart';
+import 'package:games_services_platform_interface/models.dart';
 
 abstract class GameAuth {
   /// Sign the user into Game Center or Google Play Games. This must be called before
@@ -13,6 +14,6 @@ abstract class GameAuth {
 
   /// Retrieve a Google Play Games `server_auth_code` to be used by a backend,
   /// such as Firebase, to authenticate the user. `null` on other platforms.
-  static Future<String?> getAuthCode(String clientID) async =>
-      await GamesServicesPlatform.instance.getAuthCode(clientID);
+  static Future<IdentityVerificationData?> getAuthCode({String? clientID}) async =>
+      await GamesServicesPlatform.instance.getAuthCode(clientID: clientID);
 }

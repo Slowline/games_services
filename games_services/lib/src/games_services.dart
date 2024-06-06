@@ -20,9 +20,10 @@ class GamesServices {
   static Future<bool> get isSignedIn => GameAuth.isSignedIn;
 
   /// Retrieve a Google Play Games `server_auth_code` to be used by a backend,
-  /// such as Firebase, to authenticate the user. `null` on other platforms.
-  static Future<String?> getAuthCode(String clientID) async =>
-      await GameAuth.getAuthCode(clientID);
+  /// such as Firebase, to authenticate the user or an authentication object by apple
+  /// https://developer.apple.com/documentation/gamekit/gklocalplayer/3516283-fetchitems.
+  static Future<IdentityVerificationData?> getAuthCode({String? clientID}) async =>
+      await GameAuth.getAuthCode(clientID: clientID);
 
   /// Open the device's default achievements screen.
   static Future<String?> showAchievements() async {

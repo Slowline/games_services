@@ -45,6 +45,8 @@ enum PluginError: String {
       return "Failed to reset achievements"      
     case .failedToLoadLeaderboardScores:
       return "Failed to load leaderboard scores"
+    case .failedToFetchItemsForIdentityVerificationSignature:
+      return "Failed to fetch items for identity verification"
     }
   }
   
@@ -62,6 +64,7 @@ enum PluginError: String {
   case failedToLoadAchievements = "failed_to_load_achievements"
   case failedToResetAchievements = "failed_to_reset_achievements"
   case failedToLoadLeaderboardScores = "failed_to_load_leaderboard_scores"
+  case failedToFetchItemsForIdentityVerificationSignature = "failedToFetchItemsForIdentityVerificationSignature"
 
   func flutterError() -> FlutterError {
     return FlutterError(code: rawValue,

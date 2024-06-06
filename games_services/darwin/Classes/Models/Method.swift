@@ -25,4 +25,5 @@ enum Method: String {
   case loadAchievements = "loadAchievements"
   case resetAchievements = "resetAchievements"
   case loadLeaderboardScores = "loadLeaderboardScores"
+  case fetchItemsForIdentityVerificationSignature = "fetchItemsForIdentityVerificationSignature"
 }

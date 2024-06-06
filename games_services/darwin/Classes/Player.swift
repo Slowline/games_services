@@ -18,6 +18,27 @@ class Player: BaseGamesServices {
     }
   }
 
+func fetchItemsForIdentityVerificationSignature(result: @escaping FlutterResult) {
+  if #available(iOS 13.5, *) {
+    currentPlayer.fetchItems(forIdentityVerificationSignature: { publicKeyUrl, signature, salt, timestamp, error in
+      guard error == nil else {
+        result(error?.flutterError(code: .failedToFetchItemsForIdentityVerificationSignature))
+        return
+      }
+
+      let verificationData = IdentityVerificationData(
+        publicKeyUrl: publicKeyUrl?.absoluteString ?? "",
+        signature: signature?.base64EncodedString() ?? "",
+        salt: salt?.base64EncodedString() ?? "",
+        timestamp: timestamp
+      )
+
+      result(verificationData.toDictionary())
+    })
+  } else {
+    result(PluginError.notSupportedForThisOSVersion.flutterError())
+  }
+}
 
   func getPlayerProfileImage(result: @escaping FlutterResult, size: GKPlayer.PhotoSize = GKPlayer.PhotoSize.normal) {
     currentPlayer.loadPhoto(

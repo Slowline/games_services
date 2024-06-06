@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'dart:convert';
 
 import 'package:flutter/services.dart';
+import 'package:games_services_platform_interface/src/models/identity_verification_data.dart';
 
 import '../game_services_platform_interface.dart';
 import 'models/access_point_location.dart';
@@ -107,9 +109,25 @@ class MethodChannelGamesServices extends GamesServicesPlatform {
   Future<bool?> get isSignedIn => _channel.invokeMethod("isSignedIn");
 
   @override
-  Future<String?> getAuthCode(String clientID) => Device.isPlatformAndroid
-      ? _channel.invokeMethod("getAuthCode", {"clientID": clientID})
-      : Future.value(null);
+  Future<IdentityVerificationData?> getAuthCode({String? clientID}) async {
+    // If we're on android, try get the auth code from the native code
+    if (Device.isPlatformAndroid) {
+      if (clientID == null) return Future.value(null);
+      var idToken = await _channel.invokeMethod("getAuthCode", {"clientID": clientID});
+      return IdentityVerificationData(signature: idToken);
+    }
+
+    // Otherwise, try to get the IdentityVerificationData from the darwin native code
+    var res = await _channel.invokeMethod("fetchItemsForIdentityVerificationSignature");
+
+    // Parse the response, if we received data
+    if (res != null) {
+      return IdentityVerificationData.fromMap(Map<String, dynamic>.from(res));
+    }
+
+    // Otherwise, return null
+    return null;
+  }
 
   @override
   Future<bool?> get playerIsUnderage async {

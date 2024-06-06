@@ -76,6 +76,8 @@ public class SwiftGamesServicesPlugin: NSObject, FlutterPlugin {
       player.showAccessPoint(location: location, result: result)
     case .getPlayerID:
       player.getPlayerID(result: result)
+    case .fetchItemsForIdentityVerificationSignature:
+      player.fetchItemsForIdentityVerificationSignature(result: result)
     case .getPlayerName:
       player.getPlayerName(result: result)
     case .getPlayerHiResImage:
