@@ -7,6 +7,7 @@ enum Method: String {
   case showAchievements = "showAchievements"
   case isSignedIn = "isSignedIn"
   case getPlayerID = "getPlayerID"
+  case getTeamPlayerID = "getTeamPlayerID"
   case getPlayerName = "getPlayerName"
   case getPlayerHiResImage = "getPlayerHiResImage"
   case getPlayerIconImage = "getPlayerIconImage"

@@ -18,6 +18,12 @@ abstract class Player {
     return await GamesServicesPlatform.instance.getPlayerID();
   }
 
+  /// Get the current player's ID for non apple arcade games.
+  /// On iOS/macOS the player ID is unique for your game but not other games.
+  static Future<String?> getTeamPlayerID() async {
+    return await GamesServicesPlatform.instance.getTeamPlayerID();
+  }
+
   /// Get the current player's name.
   /// On iOS/macOS the player's alias is provided.
   static Future<String?> getPlayerName() async {

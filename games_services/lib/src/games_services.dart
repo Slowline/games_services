@@ -102,6 +102,12 @@ class GamesServices {
     return await Player.getPlayerID();
   }
 
+  /// Get the current player's ID for non apple arcade games.
+  /// On iOS/macOS the player ID is unique for your game but not other games.
+  static Future<String?> getTeamPlayerID() async {
+    return await Player.getTeamPlayerID();
+  }
+
   /// Get the current player's score for a specific leaderboard.
   static Future<int?> getPlayerScore(
       {iOSLeaderboardID = "", androidLeaderboardID = ""}) async {

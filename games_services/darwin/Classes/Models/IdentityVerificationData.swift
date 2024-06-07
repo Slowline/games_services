@@ -1,10 +1,10 @@
 import Foundation
 
-struct IdentityVerificationData {
-    let publicKeyUrl: String
-    let signature: String
-    let salt: String
-    let timestamp: Int64
+public struct IdentityVerificationData: Codable {
+    var publicKeyUrl: String
+    var signature: String
+    var salt: String
+    var timestamp: Int64
 
     func toDictionary() -> [String: Any] {
       return [

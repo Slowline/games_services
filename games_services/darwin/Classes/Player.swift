@@ -6,6 +6,22 @@ import FlutterMacOS
 #endif
 
 class Player: BaseGamesServices {
+
+struct IdentityVerificationData: Codable {
+    var publicKeyUrl: String
+    var signature: String
+    var salt: String
+    var timestamp: UInt64
+
+    func toDictionary() -> [String: Any] {
+      return [
+        "publicKeyUrl": publicKeyUrl,
+        "signature": signature,
+        "salt": salt,
+        "timestamp": timestamp
+      ]
+    }
+  }
   
   // MARK: - Player Data
 
@@ -17,6 +33,15 @@ class Player: BaseGamesServices {
       result(PluginError.notSupportedForThisOSVersion.flutterError())
     }
   }
+
+    func getTeamPlayerID(result: @escaping FlutterResult) {
+      if #available(iOS 12.4, *) {
+        let teamPlayerId = currentPlayer.teamPlayerID
+        result(teamPlayerId)
+      } else {
+        result(PluginError.notSupportedForThisOSVersion.flutterError())
+      }
+    }
 
 func fetchItemsForIdentityVerificationSignature(result: @escaping FlutterResult) {
   if #available(iOS 13.5, *) {

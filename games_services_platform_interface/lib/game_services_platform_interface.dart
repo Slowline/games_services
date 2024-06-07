@@ -147,6 +147,12 @@ abstract class GamesServicesPlatform extends PlatformInterface {
     throw UnimplementedError("not implemented.");
   }
 
+  /// Get the current player's ID for non apple arcade games.
+  /// On iOS/macOS the player ID is unique for your game but not other games.
+  Future<String?> getTeamPlayerID() async {
+    throw UnimplementedError("not implemented.");
+  }
+
   /// Get the current player's name.
   /// On iOS/macOS the player's alias is provided.
   Future<String?> getPlayerName() async {
